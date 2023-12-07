@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="test">Test</button>
+    <button id="stopwatch">stopwatch</button>
+    <button id="reset">reset</button> <br />
+
+    <div id="result">0 (s)</div>
+  </body>
+  <style>
+    body {
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    button,
+    #stopwatch,
+    #reset {
+      margin: 30px 0;
+      min-width: 300px;
+      min-height: 72px;
+      padding: 12px;
+      background: #66dba8;
+      color: #fff;
+      font-size: 34px;
+      border-radius: 30px;
+      border: 2px solid #fff;
+    }
+    #result {
+      font-size: 50px;
+      color: #66dba8;
+    }
+  </style>
+  <script>
+    const stopwatch = document.getElementById("stopwatch");
+    const reset = document.getElementById("reset");
+    const result = document.getElementById("result");
+    const test = document.getElementById("test");
+    let function1 = () => {
+      console.log("function1");
+    };
+    let function2 = () => {
+      console.log("function2");
+    };
+    test.addEventListener("click", function1);
+    test.addEventListener("click", function2);
+    let isCounting = false;
+    let timerID = null;
+    let count = 0;
+    function updateUI() {
+      result.innerHTML = `${count} (s)`;
+    }
+    function startCount() {
+      timerID = setInterval(() => {
+        count += 1;
+        updateUI();
+      }, 1000);
+    }
+    function stopCount() {
+      clearInterval(timerID);
+      timerID = null;
+      count = 0;
+      updateUI();
+    }
+
+    function resetCount() {
+      count = 0;
+      updateUI();
+    }
+
+    stopwatch.addEventListener("click", () => {
+      if (isCounting) {
+        stopCount();
+        isCounting = false;
+      } else {
+        startCount();
+        isCounting = true;
+      }
+    });
+
+    reset.addEventListener("click", () => {
+      resetCount();
+    });
+  </script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Act3</title>
+  </head>
+  <body>
+    <div id="result">5!!!</div>
+  </body>
+
+  <style>
+    body {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #result {
+      color: #19b51e;
+      margin-top: 200px;
+      font-size: 80px;
+    }
+  </style>
+  <script>
+    const test = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("promise one is done!");
+      }, 5000);
+    });
+
+    test
+      .then((message) => {
+        console.log(message);
+        return message;
+      })
+      .then((message) => {
+        console.log(message);
+        return message;
+      })
+      .finally(() => {
+        console.log("finished");
+      });
+  </script>
+</html>
